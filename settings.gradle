@@ -1,3 +1,16 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        jcenter()
+    }
+    resolutionStrategy {
+        eachPlugin {
+            if (requested.id.id == 'talaiot') {
+                useModule("com.cdsap:talaiot:${requested.version}")
+            }
+        }
+    }
+}
 include ':app', ':bypass'
 include ':about', ':core', ':dribbble', ':designernews', ':search'
 include ':test_shared'

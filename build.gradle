@@ -72,6 +72,7 @@ buildscript { scriptHandler ->
 
 plugins {
     id 'com.diffplug.gradle.spotless' version '3.14.0'
+    id 'talaiot' version '1.0.7'
 }
 
 ext {
@@ -88,6 +89,23 @@ subprojects {
             target '**/*.kt'
             ktlint(versions.ktlint)
             licenseHeaderFile project.rootProject.file('scripts/copyright.kt')
+        }
+    }
+}
+
+talaiot {
+    publishers {
+        influxDbPublisher {
+            dbName = "plaid"
+            url = "http://localhost:8086"
+            taskMetricName = "task"
+            buildMetricName = "build"
+        }
+
+    }
+    filter {
+        threshold {
+            minExecutionTime = 10
         }
     }
 }
