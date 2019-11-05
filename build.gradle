@@ -73,6 +73,7 @@ buildscript { scriptHandler ->
 plugins {
     id 'com.diffplug.gradle.spotless' version '3.14.0'
     id 'talaiot' version '1.0.7'
+    id 'com.gradle.build-scan' version '2.4.2'
 }
 
 ext {
@@ -91,6 +92,11 @@ subprojects {
             licenseHeaderFile project.rootProject.file('scripts/copyright.kt')
         }
     }
+}
+
+buildScan {
+    termsOfServiceUrl = 'https://gradle.com/terms-of-service'
+    termsOfServiceAgree = 'yes'
 }
 
 talaiot {
